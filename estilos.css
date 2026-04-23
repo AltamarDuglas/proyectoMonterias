@@ -1,0 +1,352 @@
+/* 
+==========================================================================
+   ESTILOS BASE (DESKTOP FIRST)
+   Diseñado siguiendo el principio de Desktop First. Se definen primero 
+   los estilos para pantallas grandes (escritorio) y luego se utilizan 
+   Media Queries para adaptarlo a pantallas pequeñas (móviles).
+==========================================================================
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cascadia Code', monospace;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+/* --- BARRA DE NAVEGACIÓN (NAVBAR) - ESCRITORIO --- */
+
+.navbar {
+    background-color: black;
+    color: white;
+    padding: 15px 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.header-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+#titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+
+#titulo img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Ocultamos el botón hamburguesa en escritorio por defecto */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Elementos de categorías visibles en escritorio */
+.modal {
+    display: flex;
+    position: relative;
+}
+
+.btn-categorias {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.categorias-modal {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    color: black;
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 150px;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.categorias-modal.active {
+    display: block;
+}
+
+.categorias-modal li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+}
+
+.categorias-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#categoriasSelect {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    text-align: center;
+    width: auto;
+}
+
+/* Buscador en escritorio */
+.busqueda-container {
+    flex-grow: 1; 
+    max-width: 500px;
+}
+
+#input-busqueda {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Acciones de usuario en escritorio */
+.user-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+#favorito-carrito {
+    display: flex;
+    gap: 15px;
+}
+
+#login-btn {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#login-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.ayuda-link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+/* Línea separadora */
+.desktop-only {
+    display: block;
+    border: 0;
+    height: 1px;
+    background-color: #333;
+    margin: 10px 0;
+}
+
+/* Navegación inferior en escritorio */
+.header-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 10px;
+    gap: 30px;
+}
+
+.ubicacion-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#ubicacion {
+    font-weight: normal;
+    font-size: 1rem;
+    color: #ffcc00;
+}
+
+.items-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.items-menu li a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.items-menu li a:hover {
+    color: white;
+}
+
+/* --- SECCIÓN DE FILTROS - ESCRITORIO --- */
+
+.filtros {
+    margin: 20px 5%;
+    padding: 20px;
+    width: 45%;
+    min-height: 70vh;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.filtros article {
+    margin-top: 20px;
+}
+
+.filtros h4 {
+    margin-bottom: 10px;
+}
+
+.listas-tiendas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.listas-tiendas label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.filtros input[type="text"], 
+.filtros input[type="number"],
+.filtros input:not([type="checkbox"]) {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 48%;
+    margin-bottom: 10px;
+}
+
+/* 
+==========================================================================
+   MEDIA QUERIES (MÓVILES)
+   Estilos aplicados cuando la pantalla es menor a 768px (Teléfonos).
+==========================================================================
+*/
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #titulo {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Mostramos el botón hamburguesa */
+    .menu-toggle {
+        display: block;
+        align-self: flex-end;
+        margin-top: -45px;
+    }
+
+    /* Ocultamos elementos complejos en móvil */
+    .categorias-wrapper, .modal {
+        display: none;
+    }
+
+    .busqueda-container {
+        width: 100%;
+    }
+
+    .user-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #favorito-carrito {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    #login-btn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    /* Ocultamos la línea separadora */
+    .desktop-only {
+        display: none;
+    }
+
+    /* La barra inferior ahora es vertical y oculta por defecto */
+    .header-bottom {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    /* Clase activa para mostrar el menú desde JavaScript */
+    .header-bottom.active {
+        display: flex;
+        position: absolute;
+        background-color: black;
+        top: 12%
+    }
+
+    .items-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .items-menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .items-menu li a {
+        font-size: 1.1rem;
+        display: block;
+        padding: 10px 0;
+    }
+
+    /* Filtros para móvil */
+    .filtros {
+        width: 90%;
+        margin: 20px auto;
+        min-height: auto;
+    }
+}

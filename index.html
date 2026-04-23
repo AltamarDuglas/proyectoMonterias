@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- Declaramos el idioma del documento como español (es) para mejorar el SEO y la accesibilidad, cumpliendo con las buenas prácticas web -->
+<html lang="es">
+
+<head>
+    <!-- Define la codificación de caracteres a UTF-8 para soportar tildes, ñ y otros caracteres especiales del idioma español -->
+    <meta charset="UTF-8">
+    <!-- Meta etiqueta crucial para el diseño responsivo (Mobile First). Asegura que el ancho de la página se adapte al ancho del dispositivo y establece el nivel de zoom inicial al 100% -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título de la página que aparecerá en la pestaña del navegador -->
+    <title>Monteria Vende | Menú</title>
+
+    <!-- Enlace a nuestra hoja de estilos externa. Separar el CSS del HTML cumple con el principio de responsabilidad única (Single Responsibility) -->
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- Importamos el archivo JavaScript. El atributo 'defer' asegura que el script se ejecute después de que el HTML haya sido completamente procesado, evitando errores en el DOM -->
+    <script src="code.js" defer></script>
+</head>
+
+<body>
+    <!-- Etiqueta semántica para el encabezado principal de la página. Ayuda a los lectores de pantalla a identificar la estructura -->
+    <header>
+        <!-- Contenedor principal de la barra de navegación -->
+        <nav class="navbar">
+
+            <!-- Sección superior de la barra de navegación (contiene logo, búsqueda y perfil) -->
+            <div class="header-top">
+                <!-- Título principal o logo del sitio web. Se agrupa con flexbox en CSS -->
+                <h1 id="titulo">
+                    Monteria Vende
+                    <!-- Imagen decorativa o icono representativo de la marca -->
+                    <img src="./imgs/icon.svg" alt="Icono Montería Vende">
+                </h1>
+
+                <!-- Botón de menú hamburguesa (visible solo en dispositivos móviles) para mostrar u ocultar la navegación inferior sin recargar la página -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    ☰
+                </button>
+
+                <!-- Modal tradicional para la selección de categorías. Se mantiene como alternativa o para escritorio -->
+                <div class="modal">
+                    <!-- Botón que activa la visualización de las categorías invocando la función JavaScript mostrarCategorias() -->
+                    <button onclick="mostrarCategorias()" class="btn-categorias">Categorias</button>
+                    <!-- Lista de categorías que, por defecto, permanece oculta hasta ser accionada -->
+                    <ul class="categorias-modal">
+                        <li><a href="#">Negocio</a></li>
+                        <li><a href="#">Mujer</a></li>
+                        <li><a href="#">Hombre</a></li>
+                        <li><a href="#">Niñas</a></li>
+                        <li><a href="#">Niños</a></li>
+                        <li><a href="#">Tecnología</a></li>
+                        <li><a href="#">Juegos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contenedor estructurado del campo de búsqueda principal -->
+                <div class="busqueda-container">
+                    <!-- Input de tipo texto para que el usuario ingrese su término de búsqueda -->
+                    <input id="input-busqueda" type="text" placeholder="¿Qué quieres buscar hoy?">
+                </div>
+
+                <!-- Contenedor para las acciones relacionadas con el usuario (ej. favoritos, carrito, autenticación) -->
+                <div class="user-actions">
+                    <!-- Agrupación lógica de elementos de comercio electrónico -->
+                    <div id="favorito-carrito">
+                        <span class="action-item">Favoritos</span>
+                        <span class="action-item">Carrito</span>
+                    </div>
+                    <!-- Botón principal para la acción de inicio de sesión -->
+                    <button id="login-btn">Hola, Inicia Sesión</button>
+                    <!-- Enlace directo para asistencia al usuario -->
+                    <a href="#" class="ayuda-link">Ayuda</a>
+                </div>
+            </div>
+
+            <!-- Línea horizontal utilizada para separar visualmente la sección superior de la inferior (solo visible en escritorio) -->
+            <hr class="desktop-only">
+
+            <!-- Sección inferior de la barra de navegación (contiene ubicación y el menú principal de categorías) -->
+            <div class="header-bottom" id="navbarMenu">
+                <!-- Contenedor informativo que muestra la ubicación o tienda actual del usuario -->
+                <div class="ubicacion-container">
+                    <h4 id="ubicacion">✥ Montería</h4>
+                </div>
+                <!-- Lista desordenada que representa los enlaces de navegación principales del catálogo -->
+                <ul class="items-menu">
+                    <li><a href="#">Negocio</a></li>
+                    <li><a href="#">Mujer</a></li>
+                    <li><a href="#">Hombre</a></li>
+                    <li><a href="#">Niñas</a></li>
+                    <li><a href="#">Niños</a></li>
+                    <li><a href="#">Tecnología</a></li>
+                    <li><a href="#">Juegos</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección principal destinada a contener todos los filtros de la búsqueda del catálogo -->
+    <section class="filtros">
+        <!-- Artículo (article): usado semánticamente para agrupar de forma independiente el filtro de precios -->
+        <article>
+            <h4>Precio</h4>
+            <input placeholder="Min"> <input type="number" name="max" id="max" placeholder="Max">
+        </article>
+
+        <!-- Artículo (article) para agrupar los filtros correspondientes a las tiendas disponibles -->
+        <article>
+            <h4>Tiendas</h4>
+            <div class="listas-tiendas">
+                <label for="tienda1"><input id="tienda1" name="1" type="checkbox">Tienda 1</label>
+                <label for="tienda2"><input id="tienda2" name="2" type="checkbox">Tienda 2</label>
+                <label for="tienda3"><input id="tienda3" name="3" type="checkbox">Tienda 3</label>
+            </div>
+        </article>
+
+        <!-- Artículo (article) para agrupar los filtros de tipos de artículos específicos -->
+        <article>
+            <h4>Articulos</h4>
+            <div class="listas-tiendas">
+                <label for="art1"><input id="art1" name="1" type="checkbox">Articulo 1</label>
+                <label for="art2"><input id="art2" name="2" type="checkbox">Articulo 2</label>
+                <label for="art3"><input id="art3" name="3" type="checkbox">Articulo 3</label>
+            </div>
+        </article>
+    </section>
+
+</body>
+
+</html>
