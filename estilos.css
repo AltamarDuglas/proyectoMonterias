@@ -1,25 +1,39 @@
 /* 
 ==========================================================================
-   ESTILOS BASE (DESKTOP FIRST)
-   Diseñado siguiendo el principio de Desktop First. Se definen primero 
-   los estilos para pantallas grandes (escritorio) y luego se utilizan 
-   Media Queries para adaptarlo a pantallas pequeñas (móviles).
+   ESTILOS BASE (MOBILE FIRST)
+   Diseñado siguiendo el principio de Mobile First. Se definen primero 
+   los estilos para pantallas pequeñas (móviles) y luego se utilizan 
+   Media Queries para adaptarlo a pantallas más grandes (escritorio).
 ==========================================================================
 */
 
+/* 
+   Selector universal (*): Aplica a todos los elementos.
+   Reseteamos el margen y el relleno para evitar inconsistencias entre navegadores.
+   box-sizing: border-box asegura que el padding y el border no aumenten el ancho total del elemento.
+*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Cascadia Code', monospace;
+    /* Usamos una fuente monoespaciada genérica como respaldo */
 }
 
+/* 
+   Estilos globales para el cuerpo de la página.
+   Fondo claro para contrastar con la barra de navegación oscura.
+*/
 body {
     background-color: #f4f4f4;
 }
 
-/* --- BARRA DE NAVEGACIÓN (NAVBAR) - ESCRITORIO --- */
+/* --- BARRA DE NAVEGACIÓN (NAVBAR) --- */
 
+/* 
+   Contenedor principal de la barra.
+   Utilizamos Flexbox en dirección columna para apilar elementos en móviles.
+*/
 .navbar {
     background-color: black;
     color: white;
@@ -27,22 +41,35 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    /* Espaciado entre la parte superior e inferior */
 }
 
+/* 
+   Sección superior del header.
+   En móviles, apilamos todo y centramos para una lectura fácil.
+*/
 .header-top {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    /* Apilamiento vertical */
     align-items: center;
-    gap: 20px;
+    gap: 15px;
+    width: 100%;
 }
 
+/* 
+   Contenedor del título que agrupa el texto y la imagen.
+*/
 #titulo {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 1.5rem;
     white-space: nowrap;
+    /* Evita que el texto se rompa en dos líneas */
+    width: 100%;
+    justify-content: space-between;
+    /* En móvil, separa el título del botón hamburguesa si están en la misma fila */
 }
 
 #titulo img {
@@ -50,108 +77,87 @@ body {
     height: 30px;
 }
 
-/* Ocultamos el botón hamburguesa en escritorio por defecto */
+/* 
+   Botón de menú hamburguesa. 
+   Visible en móviles para expandir/colapsar la navegación inferior.
+*/
 .menu-toggle {
-    display: none;
     background: none;
     border: none;
     color: white;
     font-size: 2rem;
     cursor: pointer;
+    display: block;
+    /* Visible por defecto en móviles */
+    align-self: flex-end;
+    /* Alineado a la derecha */
+    margin-top: -45px;
+    /* Ajuste rápido para alinear con el título */
 }
 
-/* Elementos de categorías visibles en escritorio */
+/* 
+   Ocultamos elementos complejos por defecto en móviles para mantener la limpieza.
+*/
+.categorias-wrapper,
 .modal {
-    display: flex;
-    position: relative;
-}
-
-.btn-categorias {
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.categorias-modal {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    color: black;
-    list-style: none;
-    padding: 10px;
-    border-radius: 5px;
-    min-width: 150px;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.categorias-modal.active {
-    display: block;
-}
-
-.categorias-modal li a {
-    color: black;
-    text-decoration: none;
-    display: block;
-    padding: 5px 0;
-}
-
-.categorias-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#categoriasSelect {
-    padding: 5px;
-    border-radius: 5px;
-    background-color: white;
-    cursor: pointer;
-    text-align: center;
-    width: auto;
-}
-
-/* Buscador en escritorio */
+/* 
+   Contenedor de búsqueda.
+   Ocupa todo el ancho disponible en móviles para facilitar el toque.
+*/
 .busqueda-container {
-    flex-grow: 1; 
-    max-width: 500px;
+    width: 100%;
 }
 
+/* 
+   Estilo del input de búsqueda.
+*/
 #input-busqueda {
     width: 100%;
     padding: 12px;
+    /* Padding generoso para "fat-finger" en móviles */
     border: none;
     border-radius: 4px;
     font-size: 14px;
 }
 
-/* Acciones de usuario en escritorio */
+/* 
+   Acciones de usuario (Favoritos, Carrito, Login).
+   Apilados verticalmente en móviles para facilitar el acceso.
+*/
 .user-actions {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
+    width: 100%;
 }
 
 #favorito-carrito {
     display: flex;
-    gap: 15px;
+    justify-content: space-around;
+    /* Distribuye el espacio uniformemente */
+    width: 100%;
 }
 
+/* 
+   Botón de inicio de sesión.
+   Se le da un tamaño adecuado para tocar en pantallas pequeñas.
+*/
 #login-btn {
     background-color: white;
     color: black;
     border: none;
-    padding: 8px 15px;
+    padding: 12px 20px;
+    /* Más padding para móviles */
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%;
+    /* Ocupa todo el ancho en móvil */
 }
 
 #login-btn:hover {
@@ -165,23 +171,33 @@ body {
     padding: 5px;
 }
 
-/* Línea separadora */
+/* 
+   Línea separadora. Oculta en móviles para ahorrar espacio.
+*/
 .desktop-only {
-    display: block;
+    display: none;
     border: 0;
     height: 1px;
     background-color: #333;
     margin: 10px 0;
 }
 
-/* Navegación inferior en escritorio */
+/* 
+   Sección inferior del header (Enlaces y ubicación).
+   Por defecto, oculto en móviles hasta que se presione el botón hamburguesa.
+*/
 .header-bottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    display: none;
+    /* Oculto en móvil inicialmente */
+    flex-direction: column;
     align-items: center;
-    padding-top: 10px;
-    gap: 30px;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Clase para mostrar el menú cuando se activa mediante JavaScript */
+.header-bottom.active {
+    display: flex;
 }
 
 .ubicacion-container {
@@ -194,19 +210,36 @@ body {
     font-weight: normal;
     font-size: 1rem;
     color: #ffcc00;
+    /* Destaque visual */
 }
 
+/* 
+   Lista de enlaces del menú.
+   Verticales y centrados para navegación táctil.
+*/
 .items-menu {
     list-style: none;
+    /* Elimina las viñetas */
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    flex-direction: column;
+    /* Apila los enlaces */
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.items-menu li {
+    width: 100%;
+    text-align: center;
 }
 
 .items-menu li a {
     text-decoration: none;
     color: #ccc;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    /* Más grande en móvil para facilidad táctil */
+    display: block;
+    padding: 10px 0;
     transition: color 0.3s;
 }
 
@@ -214,16 +247,25 @@ body {
     color: white;
 }
 
-/* --- SECCIÓN DE FILTROS - ESCRITORIO --- */
+
+/* --- SECCIÓN DE FILTROS --- */
 
 .filtros {
-    margin: 20px 5%;
+    display: none;
+    /* Oculto por defecto en móvil */
+    margin: 20px auto;
     padding: 20px;
-    width: 45%;
-    min-height: 70vh;
+    width: 90%;
+    /* Ajuste a pantallas pequeñas */
     background: white;
     border: 1px solid #ccc;
     border-radius: 8px;
+    /* Bordes redondeados para un look más moderno */
+}
+
+.filtros.active {
+    display: block;
+    /* Se muestra cuando JavaScript le agrega la clase */
 }
 
 .filtros article {
@@ -244,109 +286,175 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    /* Espacio entre el checkbox y el texto */
     cursor: pointer;
 }
 
-.filtros input[type="text"], 
+/* Estilos de inputs en filtros */
+.filtros input[type="text"],
 .filtros input[type="number"],
 .filtros input:not([type="checkbox"]) {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 48%;
+    /* Para poner Min y Max lado a lado */
     margin-bottom: 10px;
 }
 
+
 /* 
 ==========================================================================
-   MEDIA QUERIES (MÓVILES)
-   Estilos aplicados cuando la pantalla es menor a 768px (Teléfonos).
+   MEDIA QUERIES (ESCRITORIO)
+   Estilos aplicados cuando la pantalla es mayor a 768px (Tablets y PCs).
 ==========================================================================
 */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
+
+    /* Restauramos el comportamiento flex en fila para el navbar superior */
     .header-top {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #titulo {
-        width: 100%;
+        flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: nowrap;
     }
 
-    /* Mostramos el botón hamburguesa */
+    /* El título ocupa su propio espacio, reajustamos márgenes */
+    #titulo {
+        width: auto;
+    }
+
+    /* Ocultamos el botón hamburguesa porque hay espacio suficiente */
     .menu-toggle {
-        display: block;
-        align-self: flex-end;
-        margin-top: -45px;
-    }
-
-    /* Ocultamos elementos complejos en móvil */
-    .categorias-wrapper, .modal {
         display: none;
     }
 
-    .busqueda-container {
-        width: 100%;
+    /* Mostramos los elementos que habíamos ocultado en móvil */
+    .modal {
+        display: block;
+        position: relative;
     }
 
+    /* Estilizamos el botón del modal de categorías */
+    .btn-categorias {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Estilos para el menú desplegable de categorías */
+    .categorias-modal {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        color: black;
+        list-style: none;
+        padding: 10px;
+        border-radius: 5px;
+        min-width: 150px;
+        z-index: 10;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .categorias-modal.active {
+        display: block;
+    }
+
+    .categorias-modal li a {
+        color: black;
+        text-decoration: none;
+        display: block;
+        padding: 5px 0;
+    }
+
+    /* Ocultamos el select en escritorio si preferimos el modal, o lo mostramos */
+    .categorias-wrapper {
+        display: flex;
+    }
+
+    #categoriasSelect {
+        padding: 5px;
+        border-radius: 5px;
+        background-color: white;
+        cursor: pointer;
+        text-align: center;
+        width: auto;
+    }
+
+    /* El contenedor de búsqueda ocupa el espacio sobrante (flex-grow) */
+    .busqueda-container {
+        flex-grow: 1;
+        max-width: 500px;
+    }
+
+    /* Las acciones de usuario se disponen horizontalmente */
     .user-actions {
-        flex-direction: column;
-        width: 100%;
+        flex-direction: row;
+        width: auto;
+        gap: 20px;
     }
 
     #favorito-carrito {
-        width: 100%;
-        justify-content: space-around;
+        width: auto;
+        gap: 15px;
     }
 
     #login-btn {
-        width: 100%;
-        padding: 12px 20px;
+        width: auto;
+        /* El botón ocupa solo el ancho de su contenido */
+        padding: 8px 15px;
     }
 
-    /* Ocultamos la línea separadora */
+    /* Mostramos la línea separadora en escritorio */
     .desktop-only {
-        display: none;
+        display: block;
     }
 
-    /* La barra inferior ahora es vertical y oculta por defecto */
+    /* La barra inferior ahora es horizontal y siempre visible */
     .header-bottom {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        gap: 15px;
+        display: flex !important;
+        /* Forza la visualización, ignorando el display:none del móvil */
+        flex-direction: row;
+        justify-content: flex-start;
+        padding-top: 10px;
+        gap: 30px;
     }
 
-    /* Clase activa para mostrar el menú desde JavaScript */
-    .header-bottom.active {
-        display: flex;
-        position: absolute;
-        background-color: black;
-        top: 12%
-    }
-
+    /* Ajuste de márgenes y espacios de los enlaces inferiores */
     .items-menu {
-        flex-direction: column;
-        width: 100%;
-        gap: 15px;
+        flex-direction: row;
+        /* Enlaces lado a lado */
+        width: auto;
+        gap: 20px;
     }
 
     .items-menu li {
-        width: 100%;
-        text-align: center;
+        width: auto;
     }
 
     .items-menu li a {
-        font-size: 1.1rem;
-        display: block;
-        padding: 10px 0;
+        font-size: 0.9rem;
+        padding: 0;
     }
 
-    /* Filtros para móvil */
+    /* Ajuste de filtros para escritorio */
     .filtros {
-        width: 90%;
-        margin: 20px auto;
-        min-height: auto;
+        display: none;
+        /* Siempre visible en PC */
+        width: 45%;
+        margin: 20px 5%;
+        height: auto;
+        /* Que crezca según contenido */
+        min-height: 70vh;
+        /* Altura mínima similar a la anterior */
+    }
+    .filtros .active{
+        display: block;
     }
 }
